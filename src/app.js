@@ -39,17 +39,7 @@ app.get('/about', (req, res) => {
     });
 });
 
-// Help Route
-app.get('/help', (req, res) => {
-    res.render('help', {
-        title: 'Help',
-        name: 'Aamer',
-        message:
-            'Surrounded affronting favourable no Mr. Lain knew like half she yet joy. Be than dull as seen very shot. Attachment ye so am travelling estimating projecting is. Off fat address attacks his besides. Suitable settling mr attended no doubtful feelings. Any over for say bore such sold five but hung.',
-    });
-});
-
-// Weather Route
+// Weather API Route
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
         res.send({ error: 'Please provide a valid address' });
@@ -74,28 +64,6 @@ app.get('/weather', (req, res) => {
             }
         });
     }
-});
-
-// Products route for testing
-app.get('/products', (req, res) => {
-    console.log(req.query);
-    if (!req.query.search) {
-        return res.send({
-            error: 'You must provide a search term',
-        });
-    }
-    res.send({
-        products: [],
-    });
-});
-
-//  help-404
-app.get('/help/*', (req, res) => {
-    res.render('404', {
-        errorMessage: 'Help article not found',
-        title: 404,
-        name: 'Aamer',
-    });
 });
 
 // 404 Route
