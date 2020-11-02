@@ -1,7 +1,7 @@
 const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
-const p1 = document.getElementById('p1');
-const p2 = document.getElementById('p2');
+const locationEl = document.getElementById('location');
+const weatherInfoEl = document.getElementById('w-info');
 
 const func = (e) => {
     e.preventDefault();
@@ -15,6 +15,18 @@ const func = (e) => {
                 p2.textContent = '';
             } else {
                 // console.log(data);
+                locationEl.textContent = data.location;
+                weatherInfoEl.innerHTML = `
+                    <div class='w-temp'>
+                        <i class="fas fa-temperature-low"></i>
+                        <p>Current Temperature: ${data.forecast.temperature}F</p>
+                        <p>Feels Like: ${data.forecast.feelslike}F</p>
+                    </div>
+                    <div class='w-other'>
+                        <i class="fas fa-percent"></i>
+                        <p>Humidity: ${data.forecast.humidity}</p>
+                        <p>Visibility: ${data.forecast.visibility}</p>
+                    </div>`;
                 p1.textContent = `Location: ${data.location}`;
                 p2.textContent = `The current temperature is ${data.forecast.temperature} and it feels like ${data.forecast.feelslike}`;
             }
